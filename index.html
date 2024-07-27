@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge IGCSE Business Studies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #f0f0f0;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #ff8c00;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .content-section {
+            background: #2a2a2a;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #ff8c00;
+        }
+        .accordion {
+            background-color: #3a3a3a;
+            color: #f0f0f0;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+        .active, .accordion:hover {
+            background-color: #ff8c00;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: #2a2a2a;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .show-answer {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .answer {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3a3a3a;
+            border-left: 3px solid #ff8c00;
+        }
+        #search-container {
+            margin: 20px 0;
+        }
+        #search-input {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .progress-tracker {
+            margin-top: 10px;
+        }
+        .progress-tracker input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .flashcard {
+            background-color: #3a3a3a;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .flashcard .front, .flashcard .back {
+            display: none;
+        }
+        .flashcard.show-front .front {
+            display: block;
+        }
+        .flashcard.show-back .back {
+            display: block;
+        }
+        .flip-button {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .quiz-container {
+            background-color: #2a2a2a;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .quiz-question {
+            margin-bottom: 15px;
+        }
+        .quiz-options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .drag-container, .drop-container {
+            display: inline-block;
+            width: 45%;
+            vertical-align: top;
+        }
+        .draggable {
+            background-color: #ff8c00;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            cursor: move;
+        }
+        .droppable {
+            border: 2px dashed #ff8c00;
+            height: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Cambridge IGCSE Business Studies</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#section1">Understanding Business</a></li>
+                    <li><a href="#section2">People in Business</a></li>
+                    <li><a href="#section3">Marketing</a></li>
+                    <li><a href="#section4">Operations Management</a></li>
+                    <li><a href="#section5">Finance</a></li>
+                    <li><a href="#section6">External Influences</a></li>
+                    <li><a href="#review">Review</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search for topics...">
+            <button id="search-button">Search</button>
+        </div>
+
+        <section id="syllabus" class="content-section">
+            <h2>Syllabus Overview</h2>
+            
+            <button class="accordion" id="section1">1. Understanding business activity</button>
+            <div class="panel">
+                <p>This section introduces the underlying ideas and concepts of business and includes the purpose and nature of business activity and how businesses can be classified.</p>
+                <h3>1.1 Business activity</h3>
+                <ul>
+                    <li>Concepts of needs, wants, scarcity and opportunity cost</li>
+                    <li>Importance of specialisation</li>
+                    <li>Purpose of business activity</li>
+                    <li>The concept of adding value and how added value can be increased</li>
+                </ul>
+                <div class="question">
+                    <p>What is the main purpose of business activity?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">The main purpose of business activity is to satisfy customers' needs and wants while making a profit.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-1"> <label for="progress-1">Mark as completed</label>
+                </div>
+                <div class="flashcard show-front">
+                    <div class="front">
+                        <h4>Flashcard: Business Objectives</h4>
+                        <p>What are the main objectives of a business?</p>
+                    </div>
+                    <div class="back">
+                        <p>1. Survival</p>
+                        <p>2. Profit maximization</p>
+                        <p>3. Growth</p>
+                        <p>4. Market share</p>
+                        <p>5. Customer satisfaction</p>
+                    </div>
+                    <button class="flip-button">Flip Card</button>
+                </div>
+            </div>
+
+            <button class="accordion" id="section2">2. People in business</button>
+            <div class="panel">
+                <p>This section focuses on the functional area of human resources and includes the importance and methods of motivating a workforce.</p>
+                <h3>2.1 Motivating employees</h3>
+                <ul>
+                    <li>The importance of a well-motivated workforce</li>
+                    <li>Methods of motivation: financial and non-financial</li>
+                    <li>The concept of human needs (Maslow's hierarchy)</li>
+                </ul>
+                <div class="question">
+                    <p>What are two non-financial methods of motivation?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">Two non-financial methods of motivation are job enrichment and recognition/praise.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-2"> <label for="progress-2">Mark as completed</label>
+                </div>
+            </div>
+
+            <button class="accordion" id="section3">3. Marketing</button>
+            <div class="panel">
+                <p>This section includes the role of marketing, the distinctions between niche and mass markets and the techniques of market segmentation.</p>
+                <h3>3.1 Marketing, competition and the customer</h3>
+                <ul>
+                    <li>The role of marketing</li>
+                    <li>Market changes</li>
+                    <li>Concepts of niche marketing and mass marketing</li>
+                </ul>
+                <div class="question">
+                    <p>What is market segmentation?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">Market segmentation is the process of dividing a market into distinct groups of consumers with different needs, characteristics, or behaviors.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-3"> <label for="progress-3">Mark as completed</label>
+                </div>
+            </div>
+
+            <button class="accordion" id="section4">4. Operations management</button>
+            <div class="panel">
+                <p>This section focuses on the functional area of production and includes the meaning and methods of production and how productivity can be increased.</p>
+                <h3>4.1 Production of goods and services</h3>
+                <ul>
+                    <li>The meaning of production</li>
+                    <li>The main methods of production</li>
+                    <li>Lean production and quality management</li>
+                </ul>
+                <div class="question">
+                    <p>What are the three main methods of production?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">The three main methods of production are job production, batch production, and flow production.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-4"> <label for="progress-4">Mark as completed</label>
+                </div>
+            </div>
+
+            <button class="accordion" id="section5">5. Financial information and decisions</button>
+            <div class="panel">
+                <p>This section covers the need for and sources of business finance, cash-flow forecasting and working capital.</p>
+                <h3>5.1 Business finance: needs and sources</h3>
+                <ul>
+                    <li>The need for business finance</li>
+                    <li>The main sources of capital</li>
+                    <li>Cash flow forecasting</li>
+                </ul>
+                <div class="question">
+                    <p>What is working capital?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">Working capital is the capital available for conducting the day-to-day operations of the business, calculated as current assets minus current liabilities.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-5"> <label for="progress-5">Mark as completed</label>
+                </div>
+            </div>
+
+            <button class="accordion" id="section6">6. External influences on business activity</button>
+            <div class="panel">
+                <p>This section focuses on different external influences on business activity and how these impact on a business.</p>
+                <h3>6.1 Economic influences</h3>
+                <ul>
+                    <li>Business cycle</li>
+                    <li>Interest rates</li>
+                    <li>Exchange rates</li>
+                    <li>Inflation</li>
+                </ul>
+                <div class="question">
+                    <p>How might high interest rates affect businesses?</p>
+                    <button class="show-answer">Show Answer</button>
+                    <p class="answer" style="display: none;">High interest rates can increase borrowing costs for businesses, reduce consumer spending, and potentially slow down economic growth.</p>
+                </div>
+                <div class="progress-tracker">
+                    <input type="checkbox" id="progress-6"> <label for="progress-6">Mark as completed</label>
+                </div>
+            </div>
+        </section>
+
+        <section id="review" class="content-section">
+            <h2>Summary and Review</h2>
+            <p>This section provides a quick overview of the key concepts covered in the Cambridge IGCSE Business Studies syllabus.</p>
+            <ul>
+                <li>Understanding Business Activity: Purpose of business, business objectives, stakeholders</li>
+                <li>People in Business: Motivation, organization, recruitment, communication</li>
+                <li>Marketing: Market research, marketing mix, customer needs</li>
+                <li>Operations Management: Production methods, quality, location decisions</li>
+                <li>Financial Information: Sources of finance, financial documents, analysis</li>
+                <li>External Influences: Economic, social, technological factors</li>
+            </ul>
+        </section>
+
+        <section id="quiz" class="content-section">
+            <h2>Comprehensive Quiz</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p>1. What is the primary purpose of a business?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q1" value="a"> a) To make a profit</label>
+                        <label><input type="radio" name="q1" value="b"> b) To satisfy customer needs</label>
+                        <label><input type="radio" name="q1" value="c"> c) To provide employment</label>
+                        <label><input type="radio" name="q1" value="d"> d) To pay taxes</label>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>2. Which of the following is not one of Maslow's hierarchy of needs?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q2" value="a"> a) Physiological</label>
+                        <label><input type="radio" name="q2" value="b"> b) Safety</label>
+<label><input type="radio" name="q2" value="c"> c) Financial</label>
+                        <label><input type="radio" name="q2" value="d"> d) Self-actualization</label>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>3. What does the 'P' in the 4Ps of marketing stand for?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q3" value="a"> a) Product, Price, Place, Promotion</label>
+                        <label><input type="radio" name="q3" value="b"> b) People, Process, Physical evidence, Promotion</label>
+                        <label><input type="radio" name="q3" value="c"> c) Profit, Price, Place, Promotion</label>
+                        <label><input type="radio" name="q3" value="d"> d) Planning, Pricing, Positioning, Promoting</label>
+                    </div>
+                </div>
+            </div>
+            <button id="submit-quiz">Submit Quiz</button>
+        </section>
+
+        <section id="interactive" class="content-section">
+            <h2>Interactive Exercises</h2>
+            <h3>Drag and Drop: Match the Marketing Mix</h3>
+            <div class="drag-container">
+                <div class="draggable" draggable="true" data-match="product">What you're selling</div>
+                <div class="draggable" draggable="true" data-match="price">How much it costs</div>
+                <div class="draggable" draggable="true" data-match="place">Where it's sold</div>
+                <div class="draggable" draggable="true" data-match="promotion">How it's advertised</div>
+            </div>
+            <div class="drop-container">
+                <div class="droppable" data-match="product">Product</div>
+                <div class="droppable" data-match="price">Price</div>
+                <div class="droppable" data-match="place">Place</div>
+                <div class="droppable" data-match="promotion">Promotion</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Accordion functionality
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // Search functionality
+        document.getElementById('search-button').addEventListener('click', function() {
+            var searchTerm = document.getElementById('search-input').value.toLowerCase();
+            var accordions = document.getElementsByClassName('accordion');
+            for (var i = 0; i < accordions.length; i++) {
+                if (accordions[i].textContent.toLowerCase().includes(searchTerm)) {
+                    accordions[i].style.backgroundColor = '#ff8c00';
+                } else {
+                    accordions[i].style.backgroundColor = '#3a3a3a';
+                }
+            }
+        });
+
+        // Progress tracker
+        var checkboxes = document.querySelectorAll('.progress-tracker input[type="checkbox"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', function() {
+                if (this.checked) {
+                    this.parentElement.style.color = '#ff8c00';
+                } else {
+                    this.parentElement.style.color = '#f0f0f0';
+                }
+            });
+        }
+
+        // Flashcard functionality
+        var flipButtons = document.getElementsByClassName('flip-button');
+        for (var i = 0; i < flipButtons.length; i++) {
+            flipButtons[i].addEventListener('click', function() {
+                var flashcard = this.parentElement;
+                if (flashcard.classList.contains('show-front')) {
+                    flashcard.classList.remove('show-front');
+                    flashcard.classList.add('show-back');
+                } else {
+                    flashcard.classList.remove('show-back');
+                    flashcard.classList.add('show-front');
+                }
+            });
+        }
+
+        // Quiz submission
+        document.getElementById('submit-quiz').addEventListener('click', function() {
+            var score = 0;
+            var total = 3;
+            var answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'a'
+            };
+            for (var question in answers) {
+                var selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === answers[question]) {
+                    score++;
+                }
+            }
+            alert(`You scored ${score} out of ${total}`);
+        });
+
+        // Drag and drop functionality
+        var draggables = document.querySelectorAll('.draggable');
+        var droppables = document.querySelectorAll('.droppable');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.match);
+            });
+        });
+
+        droppables.forEach(droppable => {
+            droppable.addEventListener('dragover', function(e) {
+                e.preventDefault();
+            });
+
+            droppable.addEventListener('drop', function(e) {
+                e.preventDefault();
+                var data = e.dataTransfer.getData('text');
+                if (data === e.target.dataset.match) {
+                    e.target.textContent = e.target.textContent + ': ' + 
+                        document.querySelector(`.draggable[data-match="${data}"]`).textContent;
+                    document.querySelector(`.draggable[data-match="${data}"]`).style.display = 'none';
+                    e.target.style.backgroundColor = '#4CAF50';
+                } else {
+                    e.target.style.backgroundColor = '#F44336';
+                    setTimeout(() => {
+                        e.target.style.backgroundColor = '';
+                    }, 500);
+                }
+            });
+        });
+
+        // Show answer functionality
+        var showAnswerButtons = document.querySelectorAll('.show-answer');
+        showAnswerButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                var answer = this.nextElementSibling;
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    this.textContent = 'Hide Answer';
+                } else {
+                    answer.style.display = 'none';
+                    this.textContent = 'Show Answer';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
